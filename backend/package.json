@@ -4,7 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "server":"nodemon server.js"
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +17,7 @@
     "express": "^4.19.2",
     "glob": "^9.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.1",
+    "mongoose": "^8.6.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.4",
     "rimraf": "^4.0.0",
