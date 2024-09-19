@@ -6,10 +6,6 @@ import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
 import 'dotenv/config.js'
 
-
-
-
-
 // app config
 const app=express()
 const port=4000
@@ -17,7 +13,8 @@ const port=4000
 
 //middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors());
+
 
 // db Connection
 connectDb();
