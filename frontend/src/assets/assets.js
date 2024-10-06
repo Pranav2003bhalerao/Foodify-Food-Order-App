@@ -164,7 +164,7 @@ export const food_list = [
         _id: "7",
         name: "Chicken Rolls",
         image: food_7,
-        price: 203,
+        price: 209,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Rolls"
     }, {
@@ -199,7 +199,7 @@ export const food_list = [
         _id: "12",
         name: "Vanilla Ice Cream",
         image: food_12,
-        price: 142,
+        price: 170,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Deserts"
     },
@@ -229,28 +229,28 @@ export const food_list = [
         _id: "16",
         name: "Bread Sandwich",
         image: food_16,
-        price: 244,
+        price: 240,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Sandwich"
     }, {
         _id: "17",
         name: "Cup Cake",
         image: food_17,
-        price: 154,
+        price: 155,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cake"
     }, {
         _id: "18",
         name: "Vegan Cake",
         image: food_18,
-        price: 132,
+        price: 135,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cake"
     }, {
         _id: "19",
         name: "Butterscotch Cake",
         image: food_19,
-        price: 204,
+        price: 205,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Cake"
     }, {
@@ -264,14 +264,14 @@ export const food_list = [
         _id: "21",
         name: "Garlic Mushroom ",
         image: food_21,
-        price: 124,
+        price: 129,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     }, {
         _id: "22",
         name: "Fried Cauliflower",
         image: food_22,
-        price: 232,
+        price: 239,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     }, {
@@ -285,7 +285,7 @@ export const food_list = [
         _id: "24",
         name: "Rice Zucchini",
         image: food_24,
-        price: 122,
+        price: 119,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pure Veg"
     },
@@ -293,7 +293,7 @@ export const food_list = [
         _id: "25",
         name: "Cheese Pasta",
         image: food_25,
-        price: 128,
+        price: 129,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pasta"
     },
@@ -301,28 +301,28 @@ export const food_list = [
         _id: "26",
         name: "Tomato Pasta",
         image: food_26,
-        price: 182,
+        price: 180,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pasta"
     }, {
         _id: "27",
         name: "Creamy Pasta",
         image: food_27,
-        price: 164,
+        price: 169,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pasta"
     }, {
         _id: "28",
         name: "Chicken Pasta",
         image: food_28,
-        price: 241,
+        price: 240,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Pasta"
     }, {
         _id: "29",
         name: "Buttter Noodles",
         image: food_29,
-        price: 147,
+        price: 149,
         description: "Food provides essential nutrients for overall health and well-being",
         category: "Noodles"
     }, {
