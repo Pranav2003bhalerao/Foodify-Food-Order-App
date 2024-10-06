@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
 import "./Placeholder.css";
 import { StoreContext } from "../../Context/StoreContext";
-
-const Placeholder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+const placeholder = () => {
+  const { getTotalCartAmount, token, food_list, cartItems, url } =
+    useContext(StoreContext);
 
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
+    // email:"",
     street: "",
     city: "",
     pin_code: "",
@@ -17,40 +18,23 @@ const Placeholder = () => {
   });
 
   const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const name = event.target.name;
+    const value = event.target.value;
+    setData((data) => ({ ...data, [name]: value }));
   };
 
-  // const placeOrder = async (event) => {
-  //   event.preventDefault();
-
-  //   let orderItems = [];
-  //   food_list.map((item) => {
-  //     if (cartItems[item._id] > 0) {
-  //       let itemInfo=item;
-  //       itemInfo["quantity"]=cartItems[item._id];
-  //       orderItems.push(itemInfo)
-  //     }
-  //   })
-  //   console.log(orderItems);
-  // }
-  const placeOrder = async (event) => {
+  const placeOrder = async (event)=>{
     event.preventDefault();
-
-    let orderItems = [];
-    food_list.forEach((item) => {  // Changed from map to forEach
+    let orderItems=[];
+    food_list.map((item) => {  // Provide 'item' as an argument
       if (cartItems[item._id] > 0) {
-        let itemInfo = { ...item, quantity: cartItems[item._id] };  // Spread syntax to avoid mutation
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItems[item._id];
         orderItems.push(itemInfo);
       }
-    });
-    
+    });    
     console.log(orderItems);
-}
-
+  }
 
   return (
     <form onSubmit={placeOrder} className="place-order">
@@ -116,6 +100,7 @@ const Placeholder = () => {
             value={data.phone}
             type="text"
             placeholder="Phone"
+            id=""
           />
         </div>
       </div>
@@ -141,11 +126,11 @@ const Placeholder = () => {
               </b>
             </div>
           </div>
-          <button type="submit">PROCEED TO Payment</button>
+          <button type='submit'>PROCEED TO Payment</button>
         </div>
       </div>
     </form>
   );
 };
 
-export default Placeholder;
+export default placeholder;
