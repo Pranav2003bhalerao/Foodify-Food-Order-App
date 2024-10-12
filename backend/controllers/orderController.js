@@ -19,7 +19,7 @@ const placeOrder = async (req, res) => {
     await newOrder.save();
 
     // Clear the user's cart
-    await userModel.findByIdAndUpdate(req.body.userId, {cartData: {}});
+    await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
     // Create line items for Stripe
     const line_items = req.body.items.map((item) => ({
@@ -29,7 +29,7 @@ const placeOrder = async (req, res) => {
           name: item.name,
         },
         unit_amount: item.price * 100, // Stripe expects amount in smallest currency unit
-      }, 
+      },
       quantity: item.quantity,
     }));
 
@@ -48,34 +48,66 @@ const placeOrder = async (req, res) => {
       line_items: line_items,
       mode: "payment",
       success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
+      cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
 
-   res.json({success:true,session_url:session.url})
-
+    res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"})
+    res.json({ success: false, message: "Error" });
   }
 };
 
-const verifyOrder= async(req,res)=>{
-  const {orderId,success}=req.body;
+const verifyOrder = async (req, res) => {
+  const { orderId, success } = req.body;
   try {
-    if(success=="true")
-    {
-      await orderModel.findByIdAndUpdate(orderId,{payment:true});
-      res.json({success:true,message:"Paid"})
-    }
-    else{
+    if (success == "true") {
+      await orderModel.findByIdAndUpdate(orderId, { payment: true });
+      res.json({ success: true, message: "Paid" });
+    } else {
       await orderModel.findByIdAndDelete(orderId);
-      res.json({success:false,message:"Not Paid"})
+      res.json({ success: false, message: "Not Paid" });
     }
   } catch (error) {
     console.log(error);
-    res.json({success:false,message:"Error"})
+    res.json({ success: false, message: "Error" });
   }
-}
+};
 
+//user orders for frontend
+const userOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
 
-export { placeOrder,verifyOrder };
+// Listing orders for admin panel
+
+const listOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
+// api for updating order status
+const updateStatus = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
+    });
+    res.json({ success: true, message: "Status Updated" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };

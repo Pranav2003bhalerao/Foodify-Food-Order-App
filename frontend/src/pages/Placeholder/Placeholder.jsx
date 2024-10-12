@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Placeholder.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Placeholder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
@@ -25,19 +26,6 @@ const Placeholder = () => {
     }));
   };
 
-  // const placeOrder = async (event) => {
-  //   event.preventDefault();
-
-  //   let orderItems = [];
-  //   food_list.map((item) => {
-  //     if (cartItems[item._id] > 0) {
-  //       let itemInfo=item;
-  //       itemInfo["quantity"]=cartItems[item._id];
-  //       orderItems.push(itemInfo)
-  //     }
-  //   })
-  //   console.log(orderItems);
-  // }
   const placeOrder = async (event) => {
     event.preventDefault();
 
@@ -63,6 +51,19 @@ const Placeholder = () => {
       alert("Error");
     }
 }
+  
+const navigate = useNavigate();  
+
+   useEffect(()=>{
+    if(!token)
+    {
+      navigate('/cart')
+    }
+    else if(getTotalCartAmount()===0)
+    {
+      navigate('/cart')
+    }
+   },[token])
 
 
   return (
