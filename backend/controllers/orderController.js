@@ -19,7 +19,7 @@ const placeOrder = async (req, res) => {
     await newOrder.save();
 
     // Clear the user's cart
-    await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+    await userModel.findByIdAndUpdate(req.body.userId, {cartData: {}});
 
     // Create line items for Stripe
     const line_items = req.body.items.map((item) => ({
@@ -29,7 +29,7 @@ const placeOrder = async (req, res) => {
           name: item.name,
         },
         unit_amount: item.price * 100, // Stripe expects amount in smallest currency unit
-      },
+      }, 
       quantity: item.quantity,
     }));
 
