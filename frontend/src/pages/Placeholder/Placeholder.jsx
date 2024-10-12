@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./Placeholder.css";
 import { StoreContext } from "../../Context/StoreContext";
+import axios from "axios";
 
 const Placeholder = () => {
   const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
@@ -47,8 +48,20 @@ const Placeholder = () => {
         orderItems.push(itemInfo);
       }
     });
-    
-    console.log(orderItems);
+    let orderData={
+      address:data,
+      items:orderItems,
+      amount:getTotalCartAmount()+40,//40 is delivery charge
+    }
+    let response=await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+    if(response.data.success)
+    {
+      const {session_url}=response.data;
+      window.location.replace(session_url);
+    }
+    else{
+      alert("Error");
+    }
 }
 
 
@@ -57,14 +70,14 @@ const Placeholder = () => {
       <div className="place-order-left">
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
-          <input
+          <input required
             name="firstName"
             onChange={onChangeHandler}
             value={data.firstName}
             type="text"
             placeholder="First Name"
           />
-          <input
+          <input required
             name="lastName"
             onChange={onChangeHandler}
             value={data.lastName}
@@ -72,14 +85,14 @@ const Placeholder = () => {
             placeholder="Last Name"
           />
         </div>
-        <input
+        <input required
           name="street"
           onChange={onChangeHandler}
           value={data.street}
           type="text"
           placeholder="Street"
         />
-        <input
+        <input required
           name="area"
           onChange={onChangeHandler}
           value={data.area}
@@ -87,14 +100,14 @@ const Placeholder = () => {
           placeholder="Area"
         />
         <div className="multi-fields">
-          <input
+          <input required
             name="pin_code"
             onChange={onChangeHandler}
             value={data.pin_code}
             type="text"
             placeholder="Pin-Code"
           />
-          <input
+          <input required
             name="city"
             onChange={onChangeHandler}
             value={data.city}
@@ -103,14 +116,14 @@ const Placeholder = () => {
           />
         </div>
         <div className="multi-fields">
-          <input
+          <input required
             name="state"
             onChange={onChangeHandler}
             value={data.state}
             type="text"
             placeholder="State"
           />
-          <input
+          <input required
             name="phone"
             onChange={onChangeHandler}
             value={data.phone}

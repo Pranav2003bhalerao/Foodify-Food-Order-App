@@ -6,6 +6,7 @@ import Cart from './pages/Cart/Cart'
 import Placeholder from './pages/Placeholder/Placeholder'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup';
+import Verify from './pages/Verify/Verify';
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/' element={<Home/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='/order' element={<Placeholder/>} />
+        <Route path='/verify' element={<Verify/>}/>
       </Routes>
     </div>
     <Footer/>
