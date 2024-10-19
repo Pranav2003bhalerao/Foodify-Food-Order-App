@@ -5,7 +5,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 //placing user order for frontend
-const placeOrder = async (req, res) => {
+const Placeholder = async (req, res) => {
   const frontend_url = "http://localhost:5173";
 
   try {
@@ -61,7 +61,7 @@ const placeOrder = async (req, res) => {
 const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
   try {
-    if (success == "true") {
+    if (String(success === "true")) {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       res.json({ success: true, message: "Paid" });
     } else {
@@ -110,4 +110,4 @@ const updateStatus = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
+export { Placeholder, verifyOrder, userOrders, listOrders, updateStatus };
